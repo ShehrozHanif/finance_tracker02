@@ -22,7 +22,8 @@ export async function syncOfflineTransactions(): Promise<void> {
       toast.info(`Syncing ${offlineTransactions.length} offline transactions...`);
       for (const transaction of offlineTransactions) {
         try {
-          await addTransaction(transaction); // Use the existing addTransaction API function
+          const { user_id, ...rest } = transaction;
+          await addTransaction(rest, user_id); // Use the existing addTransaction API function
         } catch (error) {
           console.error('Error syncing offline transaction:', transaction, error);
           toast.error(`Failed to sync some transactions. Error: ${(error as Error).message}`);
