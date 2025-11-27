@@ -77,7 +77,7 @@ export async function getProfiles(): Promise<Profile[]> {
   }
 }
 
-export async function addTransaction(transactionData: Omit<Transaction, 'id'>, userId: string): Promise<Transaction> {
+export async function addTransaction(transactionData: Omit<Transaction, 'id' | 'user_id'>, userId: string): Promise<Transaction> {
   const transactionWithUserId = { ...transactionData, user_id: userId };
   
   if (IS_LOCAL_ONLY) {

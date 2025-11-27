@@ -1,0 +1,11 @@
+backend/venv/
+backend/tests/
+node_modules/
+.env
+.env.local
+*.log
+.DS_Store
+history/
+specs/
+GEMINI.md
+

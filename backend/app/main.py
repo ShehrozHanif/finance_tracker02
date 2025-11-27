@@ -6,10 +6,16 @@ from .routes import router
 app = FastAPI()
 
 # Allow CORS for the frontend URL
-origins = [
-    "http://localhost:3000",  # Frontend development server
-    # Add other frontend origins if deployed
-]
+import os
+
+# Get allowed origins from environment variable or use defaults
+cors_origins_env = os.getenv("CORS_ORIGINS", "")
+if cors_origins_env:
+    origins = [origin.strip() for origin in cors_origins_env.split(",")]
+else:
+    origins = [
+        "http://localhost:3000",  # Frontend development server
+    ]
 
 app.add_middleware(
     CORSMiddleware,
